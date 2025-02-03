@@ -68,7 +68,9 @@ This Chrome extension automates chat interactions by skipping inactive chats or 
 ---
 
 ## 😎 Support
-If you encounter any issues or have questions, feel free to open an issue in this repository or contact the developer.
+If you encounter any issues or have questions, feel free to open an issue in this repository or contact the developer. I am also open to donations as well, anything helps! :)
+[Donate]([https://github.com](https://www.paypal.com/donate/?business=T2EP6GNUVE3NJ&no_recurring=1&item_name=Hello%21+Thank+you+for+supporting+my+work%2C+I+really+do+appreciate+every+donation%21+May+you+have+a+blessed+day%2C+happy+to+help%21&currency_code=USD))
+
 
 ---
 
