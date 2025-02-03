@@ -123,14 +123,20 @@ function togglePausePlay() {
 
 // Create a toggle button in the UI
 function createPausePlayButton() {
+  // Check if the button already exists, if not, create it
+  const existingButton = document.getElementById('pausePlayButton');
+  if (existingButton) return;
+
   const pausePlayButton = document.createElement('button');
   pausePlayButton.id = 'pausePlayButton';
   pausePlayButton.textContent = 'Turn OFF';
+
+  // Apply styles to the button
   Object.assign(pausePlayButton.style, {
     position: 'fixed',
-    top: '10px',
-    left: '10px',
-    zIndex: '9999',  // Increase z-index to ensure it's on top
+    top: '10px',        // Adjust the position as needed
+    left: '10px',       // Adjust the position as needed
+    zIndex: '9999',     // Ensure it's above other elements
     padding: '10px',
     backgroundColor: 'red',
     color: 'white',
@@ -142,6 +148,11 @@ function createPausePlayButton() {
 
   pausePlayButton.addEventListener('click', togglePausePlay);
   document.body.appendChild(pausePlayButton);
+}
+
+// Periodically check for the button and create it if it's missing
+function ensureButton() {
+  setInterval(createPausePlayButton, 5000);
 }
 
 // Monitor chat activity
@@ -167,6 +178,17 @@ function monitorChat() {
   }, 5000);
 }
 
+// Listen for messages from the popup to toggle pause state
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.isPaused !== undefined) {
+    isPaused = message.isPaused;
+    console.log(isPaused ? "Script paused." : "Script resumed.");
+  }
+});
+
 // Initialize the script
-createPausePlayButton();
-monitorChat();
+window.onload = () => {
+  createPausePlayButton();
+  ensureButton(); // Periodically ensure the button is created
+  monitorChat();
+};

@@ -1,10 +1,14 @@
-const toggleButton = document.getElementById('toggleButton');
+let isPaused = false;
 
-toggleButton.addEventListener('click', () => {
+const pausePlayButton = document.getElementById('pausePlayButton');
+pausePlayButton.addEventListener('click', () => {
+  isPaused = !isPaused;
+  pausePlayButton.textContent = isPaused ? 'Turn ON' : 'Turn OFF';
+  pausePlayButton.style.backgroundColor = isPaused ? 'green' : 'red';
+  console.log(isPaused ? 'Script paused.' : 'Script resumed.');
+
+  // Send a message to the content script
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.scripting.executeScript({
-      target: { tabId: tabs[0].id },
-      function: togglePausePlay
-    });
+    chrome.tabs.sendMessage(tabs[0].id, { isPaused });
   });
 });
