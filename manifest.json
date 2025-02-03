@@ -1,29 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "Chat Automation Extension",
+  "name": "ChitChat Auto-Skipper",
   "version": "1.0",
-  "description": "Automates chat interactions by skipping inactive chats or chats with specific keywords.",
-  "permissions": ["activeTab", "scripting"],
-  "background": {
-    "service_worker": "background.js"
-  },
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
-    }
-  },
+  "description": "Automatically skips unwanted chats on ChitChat.gg.",
+  "permissions": ["activeTab"],
   "content_scripts": [
     {
-      "matches": ["*://*/*"], // Adjust this to match your chat site's URL
+      "matches": ["https://app.chitchat.gg/chat/new/*"],
       "js": ["content.js"]
     }
   ],
   "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "48": "icon.png"
   }
 }
